@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1>My Main View</h1>
+    <div id="myPartialView"></div>
+    <button onclick="refreshPartialView()">Refresh</button>
+</div>
+
+@section Scripts {
+    <script>
+        function refreshPartialView() {
+
+            $.get('/Home/GetPartialView', function (result) {
+                $('#myPartialView').html(result);
+            });
+
+
+            //$.ajax({
+            //    url: '@Url.Action("GetPartialView", "Home")',
+            //    type: 'GET',
+            //    success: function (result) {
+            //        $('#myPartialView').html(result);
+            //    }
+            //});
+
+            /*
+            $.ajax({
+                 url: '@Url.Action("GetPartialView", "Home")',
+                type: 'POST',
+                data: {
+                    key1: value1,
+                    key2: value2
+                },
+                beforeSend: function () {
+                    // do something
+                },
+                complete: function () {
+                    // do something
+                },
+                success: function (data) {
+                    // do something
+                }
+            });
+            */
+
+        }
+    </script>
+}

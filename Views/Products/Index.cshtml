@@ -1,0 +1,81 @@
+﻿@model IEnumerable<NetcoreInventory.Models.product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card mx-4 my-5">
+
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6">
+                <h4 class="mt-1 my-0 py-0">รายการสินค้า</h4>
+            </div>
+            <div class="col-md-6 text-end">
+                <a asp-action="Create" asp-controller="Products" class="btn btn-success">เพิ่มสินค้า</a>
+            </div>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductPicture)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoryID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnitPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnitInStock)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                 <td>
+                        <img src="@Html.DisplayFor(modelItem => item.ProductPicture)" width="50" />
+                   </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitInStock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifiedDate)
+                </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ProductID" class="btn btn-sm btn-warning">แก้ไข</a>
+                        <a asp-action="Details" asp-route-id="@item.ProductID" class="btn btn-sm btn-info">เรียกดู</a>
+                        <a asp-action="Delete" asp-route-id="@item.ProductID" class="btn btn-sm btn-danger">ลบ</a>
+                    </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</div>
